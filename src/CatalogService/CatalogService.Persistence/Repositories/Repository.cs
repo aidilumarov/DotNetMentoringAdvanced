@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
 using CatalogService.Persistence.Context;
+using CatalogService.Domain.Interfaces;
+using CatalogService.Domain.Entities;
 
 namespace CatalogService.Persistence.Repositories
 {
-    public class Repository<T> : IRepository<T> where T : class
+    public class Repository<T> : IRepository<T> where T : BaseEntity
     {
         private readonly CatalogServiceDbContext _dbContext;
 
@@ -18,7 +19,7 @@ namespace CatalogService.Persistence.Repositories
             return _dbContext.Set<T>();
         }
 
-        public async Task<T> GetByIdAsync(int id)
+        public async Task<T> GetByIdAsync(Guid id)
         {
             return await _dbContext.Set<T>().FindAsync(id);
         }

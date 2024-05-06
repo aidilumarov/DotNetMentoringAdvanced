@@ -1,4 +1,5 @@
 using CatalogService.Application;
+using CatalogService.Domain.Interfaces;
 using CatalogService.Persistence.Context;
 using CatalogService.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -16,8 +17,6 @@ builder.Services.AddDbContext<CatalogServiceDbContext>(options =>
             .EnableSensitiveDataLogging());
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-builder.Services.AddScoped<CategoryService>();
-builder.Services.AddScoped<ItemService>();
 
 var app = builder.Build();
 

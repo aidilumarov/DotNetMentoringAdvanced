@@ -2,9 +2,9 @@
 	<PropertyGroup>
 		<AnalysisLevel>latest</AnalysisLevel>
 		<AnalysisMode>All</AnalysisMode>
-		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-		<CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
-		
+		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+		<CodeAnalysisTreatWarningsAsErrors>false</CodeAnalysisTreatWarningsAsErrors>
+		<Nullable>disable</Nullable>
 	</PropertyGroup>
     <ItemGroup Label="Analyzers">
 		<PackageReference

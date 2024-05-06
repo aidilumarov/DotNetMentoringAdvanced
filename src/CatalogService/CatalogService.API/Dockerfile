@@ -7,16 +7,16 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["TicketApp.API/TicketApp.API.csproj", "TicketApp.API/"]
-RUN dotnet restore "TicketApp.API/TicketApp.API.csproj"
+COPY ["CatalogService.API/CatalogService.API.csproj", "CatalogService.API/"]
+RUN dotnet restore "CatalogService.API/CatalogService.API.csproj"
 COPY . .
-WORKDIR "/src/TicketApp.API"
-RUN dotnet build "TicketApp.API.csproj" -c Release -o /app/build
+WORKDIR "/src/CatalogService.API"
+RUN dotnet build "CatalogService.API.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "TicketApp.API.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "CatalogService.API.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "TicketApp.API.dll"]
+ENTRYPOINT ["dotnet", "CatalogService.API.dll"]
