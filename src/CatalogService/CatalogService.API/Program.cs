@@ -1,4 +1,5 @@
 using CatalogService.Application;
+using CatalogService.Application.Categories.CreateCategory;
 using CatalogService.Domain.Interfaces;
 using CatalogService.Persistence.Context;
 using CatalogService.Persistence.Repositories;
@@ -17,6 +18,7 @@ builder.Services.AddDbContext<CatalogServiceDbContext>(options =>
             .EnableSensitiveDataLogging());
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddMediatR(new MediatRServiceConfiguration().RegisterServicesFromAssembly(typeof(CreateCategoryCommandHandler).Assembly));
 
 var app = builder.Build();
 

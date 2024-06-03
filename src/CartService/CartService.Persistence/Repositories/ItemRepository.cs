@@ -13,7 +13,7 @@ namespace CartService.Persistence.Repositories
             _dbContext = dbContext;
         }
 
-        public List<Item> GetItems(int cartId)
+        public List<Item> GetItems(Guid cartId)
         {
             var cartCollection = _dbContext.Database.GetCollection<Cart>("carts");
             var cart = cartCollection.FindById(cartId);
@@ -21,7 +21,7 @@ namespace CartService.Persistence.Repositories
             return cart?.Items;
         }
 
-        public void AddItem(int cartId, Item item)
+        public void AddItem(Guid cartId, Item item)
         {
             var cartCollection = _dbContext.Database.GetCollection<Cart>("carts");
             var cart = cartCollection.FindById(cartId);
@@ -34,7 +34,7 @@ namespace CartService.Persistence.Repositories
             }
         }
 
-        public void RemoveItem(int cartId, int itemId)
+        public void RemoveItem(Guid cartId, int itemId)
         {
             var cartCollection = _dbContext.Database.GetCollection<Cart>("carts");
             var cart = cartCollection.FindById(cartId);

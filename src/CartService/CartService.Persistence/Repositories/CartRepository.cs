@@ -13,7 +13,7 @@ namespace CartService.Persistence.Repositories
             _dbContext = dbContext;
         }
 
-        public Cart GetCart(int id)
+        public Cart GetCart(Guid id)
         {
             var collection = _dbContext.Database.GetCollection<Cart>("carts");
             return collection.FindById(id);
@@ -32,7 +32,7 @@ namespace CartService.Persistence.Repositories
             collection.Update(cart);
         }
 
-        public void DeleteCart(int id)
+        public void DeleteCart(Guid id)
         {
             var collection = _dbContext.Database.GetCollection<Cart>("carts");
             collection.Delete(id);

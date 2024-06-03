@@ -4,7 +4,7 @@ using MediatR;
 
 namespace CatalogService.Application.Categories.UpdateCategory
 {
-    internal sealed class UpdateCategoryCommandHandler : IRequestHandler<UpdateCategoryCommand>
+    public sealed class UpdateCategoryCommandHandler : IRequestHandler<UpdateCategoryCommand>
     {
         private readonly IRepository<Category> _categoryRepository;
 

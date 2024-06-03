@@ -1,23 +1,18 @@
 ﻿using CartService.Domain;
-using CartService.Persistence.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CartService.Persistence.Repositories.Interfaces;
 
-namespace CartService.Application
+namespace CartService.Application.Services
 {
-    internal class CartService
+    public class CartService
     {
-        private readonly CartRepository _cartRepository;
+        private readonly ICartRepository _cartRepository;
 
-        public CartService(CartRepository cartRepository)
+        public CartService(ICartRepository cartRepository)
         {
             _cartRepository = cartRepository;
         }
 
-        public Cart GetCart(int id)
+        public Cart GetCart(Guid id)
         {
             return _cartRepository.GetCart(id);
         }
@@ -32,7 +27,7 @@ namespace CartService.Application
             _cartRepository.UpdateCart(cart);
         }
 
-        public void DeleteCart(int id)
+        public void DeleteCart(Guid id)
         {
             _cartRepository.DeleteCart(id);
         }

@@ -1,6 +1,9 @@
+using Asp.Versioning;
 using CartService.Persistence.Contexts;
 using CartService.Persistence.Repositories;
 using CartService.Persistence.Repositories.Interfaces;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,10 +12,20 @@ builder.Services.Configure<CartServiceDbOptions>(builder.Configuration.GetSectio
 builder.Services.AddSingleton<ICartServiceContext, CartServiceContext>();
 builder.Services.AddTransient<ICartRepository, CartRepository>();
 builder.Services.AddTransient<IItemRepository, ItemRepository>();
+builder.Services.AddTransient<CartService.Application.Services.CartService>();
+builder.Services.AddTransient<CartService.Application.Services.ItemService>();
 
 builder.Services.AddControllers();
+builder.Services.AddApiVersioning();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Cart API", Version = "1.0" });
+    c.SwaggerDoc("v2", new OpenApiInfo { Title = "Cart API", Version = "2.0" });
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    c.IncludeXmlComments(xmlPath);
+});
 
 var app = builder.Build();
 
@@ -20,7 +33,11 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Cart API V1");
+        c.SwaggerEndpoint("/swagger/v2/swagger.json", "Cart API V2");
+    });
 }
 
 app.UseHttpsRedirection();

@@ -4,7 +4,7 @@ using MediatR;
 
 namespace CatalogService.Application.Categories.DeleteCategory
 {
-    internal sealed class DeleteCategoryCommandHandler : IRequestHandler<DeleteCategoryCommand>
+    public sealed class DeleteCategoryCommandHandler : IRequestHandler<DeleteCategoryCommand>
     {
         private readonly IRepository<Category> _categoryRepository;
 

@@ -4,9 +4,9 @@ namespace CartService.Persistence.Repositories.Interfaces
 {
     public interface ICartRepository
     {
-        Cart GetCart(int id);
+        Cart GetCart(Guid id);
         Cart AddCart(Cart cart);
         void UpdateCart(Cart cart);
-        void DeleteCart(int id);
+        void DeleteCart(Guid id);
     }
 }

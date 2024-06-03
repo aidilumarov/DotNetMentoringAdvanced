@@ -5,7 +5,7 @@ using System;
 
 namespace CatalogService.Application.Categories.CreateCategory
 {
-    internal sealed class CreateCategoryCommandHandler : IRequestHandler<CreateCategoryCommand, Guid>
+    public sealed class CreateCategoryCommandHandler : IRequestHandler<CreateCategoryCommand, Guid>
     {
         private readonly IRepository<Category> _categoryRepository;
 

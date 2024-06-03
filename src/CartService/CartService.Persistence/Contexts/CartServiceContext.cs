@@ -1,5 +1,6 @@
 ﻿using LiteDB;
 using Microsoft.Extensions.Options;
+using System.Reflection;
 
 namespace CartService.Persistence.Contexts
 {
@@ -9,7 +10,7 @@ namespace CartService.Persistence.Contexts
 
         public CartServiceContext(IOptions<CartServiceDbOptions> options)
         {
-            Database = new LiteDatabase(options.Value.ConnectionString);
+            Database = new LiteDatabase(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, options.Value.ConnectionString));
         }
     }
 }
