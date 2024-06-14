@@ -5,7 +5,7 @@ using System;
 
 namespace CatalogService.Application.Categories.GetCategoryById
 {
-    internal sealed class GetCategoryByIdQueryHandler : IRequestHandler<GetCategoryByIdQuery, CategoryResponse?>
+    public sealed class GetCategoryByIdQueryHandler : IRequestHandler<GetCategoryByIdQuery, CategoryResponse?>
     {
         private readonly IRepository<Category> _categoryRepository;
 

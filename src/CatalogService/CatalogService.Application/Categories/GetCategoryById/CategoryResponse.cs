@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CatalogService.Application.Categories.GetCategoryById
 {
-    internal class CategoryResponse
+    public class CategoryResponse
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

@@ -4,8 +4,8 @@ namespace CartService.Persistence.Repositories.Interfaces
 {
     public interface IItemRepository
     {
-        List<Item> GetItems(int cartId);
-        void AddItem(int cartId, Item item);
-        void RemoveItem(int cartId, int itemId);
+        List<Item> GetItems(Guid cartId);
+        void AddItem(Guid cartId, Item item);
+        void RemoveItem(Guid cartId, int itemId);
     }
 }
