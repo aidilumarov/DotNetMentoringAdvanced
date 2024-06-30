@@ -62,3 +62,4 @@ namespace CatalogService.Api.Controllers
             return NoContent();
         }
     }
+}

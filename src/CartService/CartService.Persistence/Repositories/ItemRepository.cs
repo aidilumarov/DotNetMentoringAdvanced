@@ -1,6 +1,6 @@
 ﻿using CartService.Domain;
 using CartService.Persistence.Contexts;
-using CartService.Persistence.Repositories.Interfaces;
+using CartService.Domain.Repositories.Interfaces;
 
 namespace CartService.Persistence.Repositories
 {
@@ -34,7 +34,7 @@ namespace CartService.Persistence.Repositories
             }
         }
 
-        public void RemoveItem(Guid cartId, int itemId)
+        public void RemoveItem(Guid cartId, Guid itemId)
         {
             var cartCollection = _dbContext.Database.GetCollection<Cart>("carts");
             var cart = cartCollection.FindById(cartId);
@@ -43,6 +43,27 @@ namespace CartService.Persistence.Repositories
             {
                 cart.Items?.RemoveAll(i => i.Id == itemId);
                 cartCollection.Update(cart);
+            }
+        }
+
+        public void UpdateItem(Item updatedItem)
+        {
+            var cartCollection = _dbContext.Database.GetCollection<Cart>("carts");
+            var carts = cartCollection.FindAll();
+
+            foreach (var cart in carts)
+            {
+                if (cart.Items != null)
+                {
+                    var item = cart.Items.FirstOrDefault(i => i.Id == updatedItem.Id);
+                    if (item != null)
+                    {
+                        item.Name = updatedItem.Name;
+                        item.Price = updatedItem.Price;
+
+                        cartCollection.Update(cart);
+                    }
+                }
             }
         }
     }

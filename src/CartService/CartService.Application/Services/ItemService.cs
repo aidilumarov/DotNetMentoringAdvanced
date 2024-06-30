@@ -1,6 +1,6 @@
 ﻿using CartService.Domain;
-using CartService.Persistence.Repositories;
-using CartService.Persistence.Repositories.Interfaces;
+using CartService.Domain.Repositories;
+using CartService.Domain.Repositories.Interfaces;
 
 namespace CartService.Application.Services
 {
@@ -23,7 +23,7 @@ namespace CartService.Application.Services
             _itemRepository.AddItem(cartId, item);
         }
 
-        public void RemoveItem(Guid cartId, int itemId)
+        public void RemoveItem(Guid cartId, Guid itemId)
         {
             _itemRepository.RemoveItem(cartId, itemId);
         }

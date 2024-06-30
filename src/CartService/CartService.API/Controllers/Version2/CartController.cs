@@ -64,7 +64,7 @@ namespace CartService.Api.Controllers.Version2
         /// <param name="itemId">The ID of the item to delete.</param>
         /// <returns>A status code indicating the result of the operation.</returns>
         [HttpDelete("{id}/{itemId}")]
-        public IActionResult DeleteItem(Guid id, int itemId)
+        public IActionResult DeleteItem(Guid id, Guid itemId)
         {
             var cart = _cartService.GetCart(id);
             if (cart == null)

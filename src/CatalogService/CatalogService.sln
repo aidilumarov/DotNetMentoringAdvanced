@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CatalogService.Domain", "Ca
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CatalogService.Persistence", "CatalogService.Persistence\CatalogService.Persistence.csproj", "{0315DC62-AE77-4661-87D9-41CEA0E7FDAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatalogService.Application", "CatalogService.Application\CatalogService.Application.csproj", "{A17FC1AC-29FA-4301-A08C-9536C945E6A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CatalogService.Application", "CatalogService.Application\CatalogService.Application.csproj", "{A17FC1AC-29FA-4301-A08C-9536C945E6A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatalogService.RabbitMQClient", "CatalogService.RabbitMQClient\CatalogService.RabbitMQClient.csproj", "{C7542BB4-67E1-4AF8-B4AE-14115DF397BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{A17FC1AC-29FA-4301-A08C-9536C945E6A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A17FC1AC-29FA-4301-A08C-9536C945E6A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A17FC1AC-29FA-4301-A08C-9536C945E6A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7542BB4-67E1-4AF8-B4AE-14115DF397BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7542BB4-67E1-4AF8-B4AE-14115DF397BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7542BB4-67E1-4AF8-B4AE-14115DF397BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7542BB4-67E1-4AF8-B4AE-14115DF397BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

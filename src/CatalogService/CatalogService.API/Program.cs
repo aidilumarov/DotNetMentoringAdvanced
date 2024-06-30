@@ -3,6 +3,7 @@ using CatalogService.Application.Categories.CreateCategory;
 using CatalogService.Domain.Interfaces;
 using CatalogService.Persistence.Context;
 using CatalogService.Persistence.Repositories;
+using CatalogService.RabbitMQClient;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +20,8 @@ builder.Services.AddDbContext<CatalogServiceDbContext>(options =>
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddMediatR(new MediatRServiceConfiguration().RegisterServicesFromAssembly(typeof(CreateCategoryCommandHandler).Assembly));
+
+builder.Services.AddSingleton<IMessagePublisherFactory>(new MessagePublisherFactory(builder.Configuration.GetSection("MessageQueue").GetValue<string>("Address")));
 
 var app = builder.Build();
 

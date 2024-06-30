@@ -1,9 +1,12 @@
 using Asp.Versioning;
 using CartService.Persistence.Contexts;
 using CartService.Persistence.Repositories;
-using CartService.Persistence.Repositories.Interfaces;
+using CartService.Domain.Repositories.Interfaces;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
+using CartService.Domain.Interfaces;
+using CartService.Application.MessageHandlers;
+using CartService.RabbitMQClient;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +17,12 @@ builder.Services.AddTransient<ICartRepository, CartRepository>();
 builder.Services.AddTransient<IItemRepository, ItemRepository>();
 builder.Services.AddTransient<CartService.Application.Services.CartService>();
 builder.Services.AddTransient<CartService.Application.Services.ItemService>();
+
+builder.Services.AddSingleton<IMessageListenerFactory>(provider =>
+    new MessageListenerFactory(
+        builder.Configuration.GetSection("MessageQueue").GetValue<string>("Address")));
+
+builder.Services.AddHostedService<ItemUpdateListener>();
 
 builder.Services.AddControllers();
 builder.Services.AddApiVersioning();
