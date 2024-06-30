@@ -1,6 +1,6 @@
 ﻿using CartService.Domain;
 using CartService.Persistence.Contexts;
-using CartService.Persistence.Repositories.Interfaces;
+using CartService.Domain.Repositories.Interfaces;
 
 namespace CartService.Persistence.Repositories
 {
