@@ -1,9 +1,11 @@
-﻿using CatalogService.Application.Categories.CreateCategory;
+﻿using CatalogService.API.SharedData;
+using CatalogService.Application.Categories.CreateCategory;
 using CatalogService.Application.Categories.DeleteCategory;
 using CatalogService.Application.Categories.GetAllCategories;
 using CatalogService.Application.Categories.GetCategoryById;
 using CatalogService.Application.Categories.UpdateCategory;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CatalogService.Api.Controllers
@@ -20,6 +22,7 @@ namespace CatalogService.Api.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = UserRoles.Manager + "," + UserRoles.Buyer)]
         public async Task<IActionResult> GetAll()
         {
             var categories = await _mediator.Send(new GetAllCategoriesQuery());
@@ -27,6 +30,7 @@ namespace CatalogService.Api.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = UserRoles.Manager + "," + UserRoles.Buyer)]
         public async Task<IActionResult> GetById(Guid id)
         {
             var category = await _mediator.Send(new GetCategoryByIdQuery(id));
@@ -38,6 +42,7 @@ namespace CatalogService.Api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = UserRoles.Manager)]
         public async Task<IActionResult> Create([FromBody] CreateCategoryCommand command)
         {
             var id = await _mediator.Send(command);
@@ -45,6 +50,7 @@ namespace CatalogService.Api.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = UserRoles.Manager)]
         public async Task<IActionResult> Update(Guid id, [FromBody] UpdateCategoryCommand command)
         {
             if (id != command.Id)
@@ -56,6 +62,7 @@ namespace CatalogService.Api.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = UserRoles.Manager)]
         public async Task<IActionResult> Delete(Guid id)
         {
             await _mediator.Send(new DeleteCategoryCommand(id));

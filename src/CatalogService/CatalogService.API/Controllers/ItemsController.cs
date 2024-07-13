@@ -1,9 +1,11 @@
-﻿using CatalogService.Application.Items.CreateItem;
+﻿using CatalogService.API.SharedData;
+using CatalogService.Application.Items.CreateItem;
 using CatalogService.Application.Items.DeleteItem;
 using CatalogService.Application.Items.GetAllItems;
 using CatalogService.Application.Items.GetItemById;
 using CatalogService.Application.Items.UpdateItem;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CatalogService.Api.Controllers
@@ -20,6 +22,7 @@ namespace CatalogService.Api.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = UserRoles.Manager + "," + UserRoles.Buyer)]
         public async Task<IActionResult> GetAll()
         {
             var items = await _mediator.Send(new GetAllItemsQuery());
@@ -27,6 +30,7 @@ namespace CatalogService.Api.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = UserRoles.Manager + "," + UserRoles.Buyer)]
         public async Task<IActionResult> GetById(Guid id)
         {
             var item = await _mediator.Send(new GetItemByIdQuery(id));
@@ -38,6 +42,7 @@ namespace CatalogService.Api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = UserRoles.Manager)]
         public async Task<IActionResult> Create(CreateItemCommand command)
         {
             var id = await _mediator.Send(command);
@@ -45,6 +50,7 @@ namespace CatalogService.Api.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = UserRoles.Manager)]
         public async Task<IActionResult> Update(Guid id, UpdateItemCommand command)
         {
             if (id != command.Id)
@@ -56,6 +62,7 @@ namespace CatalogService.Api.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = UserRoles.Manager)]
         public async Task<IActionResult> Delete(Guid id)
         {
             await _mediator.Send(new DeleteItemCommand(id));
