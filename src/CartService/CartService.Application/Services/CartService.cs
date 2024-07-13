@@ -1,5 +1,5 @@
 ﻿using CartService.Domain;
-using CartService.Persistence.Repositories.Interfaces;
+using CartService.Domain.Repositories.Interfaces;
 
 namespace CartService.Application.Services
 {
