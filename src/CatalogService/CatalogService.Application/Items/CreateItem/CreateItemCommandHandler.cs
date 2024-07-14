@@ -4,7 +4,7 @@ using MediatR;
 
 namespace CatalogService.Application.Items.CreateItem
 {
-    internal sealed class CreateItemCommandHandler : IRequestHandler<CreateItemCommand, Guid>
+    public sealed class CreateItemCommandHandler : IRequestHandler<CreateItemCommand, Guid>
     {
         private readonly IRepository<Item> _itemRepository;
         public CreateItemCommandHandler(IRepository<Item> itemRepository) 

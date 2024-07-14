@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CatalogService.Application.Items.GetItemById
 {
-    internal sealed class GetItemByIdQueryHandler : IRequestHandler<GetItemByIdQuery, ItemResponse?>
+    public sealed class GetItemByIdQueryHandler : IRequestHandler<GetItemByIdQuery, ItemResponse?>
     {
         private IRepository<Item> _itemRepository;
         public GetItemByIdQueryHandler(IRepository<Item> itemRepository) 

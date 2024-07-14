@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace CatalogService.Domain.Entities
@@ -13,5 +14,6 @@ namespace CatalogService.Domain.Entities
         public Category Category { get; set; }
         public decimal Price { get; set; }
         public int Amount { get; set; }
+        public Collection<ItemProperty> Properties { get; set; }
     }
 }

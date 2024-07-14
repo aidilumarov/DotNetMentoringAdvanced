@@ -3,6 +3,7 @@ using CatalogService.Application.Items.CreateItem;
 using CatalogService.Application.Items.DeleteItem;
 using CatalogService.Application.Items.GetAllItems;
 using CatalogService.Application.Items.GetItemById;
+using CatalogService.Application.Items.GetItemPropertiesById;
 using CatalogService.Application.Items.UpdateItem;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -38,7 +39,21 @@ namespace CatalogService.Api.Controllers
             {
                 return NotFound();
             }
+
             return Ok(item);
+        }
+
+        [HttpGet("{id}/properties")]
+        [Authorize(Roles = UserRoles.Manager + "," + UserRoles.Buyer)]
+        public async Task<IActionResult> GetPropertiesById(Guid id)
+        {
+            var propertyResponse = await _mediator.Send(new GetItemPropertiesByIdQuery(id));
+            if (propertyResponse == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(propertyResponse.Properties);
         }
 
         [HttpPost]
@@ -57,6 +72,7 @@ namespace CatalogService.Api.Controllers
             {
                 return BadRequest();
             }
+
             await _mediator.Send(command);
             return NoContent();
         }

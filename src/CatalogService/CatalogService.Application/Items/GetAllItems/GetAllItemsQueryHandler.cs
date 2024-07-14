@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CatalogService.Application.Items.GetAllItems
 {
-    internal sealed class GetAllItemsQueryHandler : IRequestHandler<GetAllItemsQuery, List<ItemResponse>>
+    public sealed class GetAllItemsQueryHandler : IRequestHandler<GetAllItemsQuery, List<ItemResponse>>
     {
         private readonly IRepository<Item> _itemRepository;
 

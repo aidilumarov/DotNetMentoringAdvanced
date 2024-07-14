@@ -27,6 +27,15 @@ namespace CatalogService.Persistence.Context
                 .WithMany(c => c.Items)
                 .HasForeignKey(i => i.CategoryId)
                 .IsRequired();
+
+            modelBuilder.Entity<Item>()
+                .HasMany(i => i.Properties)
+                .WithOne(p => p.Item)
+                .HasForeignKey(p => p.ItemId)
+                .IsRequired();
+
+            modelBuilder.Entity<ItemProperty>()
+                .HasKey(p => new { p.ItemId, p.PropertyName });
         }
     }
 }
