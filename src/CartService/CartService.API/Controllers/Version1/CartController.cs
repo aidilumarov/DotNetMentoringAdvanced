@@ -2,6 +2,8 @@
 using CartService.Application.Services;
 using CartService.Domain;
 using Asp.Versioning;
+using CartService.API.SharedData;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CartService.API.Controllers.Version1
 {
@@ -12,6 +14,7 @@ namespace CartService.API.Controllers.Version1
     [ApiVersion("1.0")]
     [ApiExplorerSettings(GroupName = "v1")]
     [Route("api/v1/[controller]")]
+    [Authorize(Roles = UserRoles.Manager + "," + UserRoles.Buyer)]
     public class CartController : ControllerBase
     {
         private readonly Application.Services.CartService _cartService;

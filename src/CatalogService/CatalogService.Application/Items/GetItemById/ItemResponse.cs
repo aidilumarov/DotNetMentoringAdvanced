@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CatalogService.Application.Items.GetItemById
 {
-    internal class ItemResponse
+    public class ItemResponse
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

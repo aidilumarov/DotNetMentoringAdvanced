@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CatalogService.Application.Items.DeleteItem
 {
-    internal sealed class DeleteItemCommandHandler : IRequestHandler<DeleteItemCommand>
+    public sealed class DeleteItemCommandHandler : IRequestHandler<DeleteItemCommand>
     {
         private readonly IRepository<Item> _itemRepository;
 

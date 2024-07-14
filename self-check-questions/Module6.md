@@ -1,0 +1,13 @@
+# Module 6 Self-check Questions
+
+**What does an API gateway do? What is the implementation of the API gateways?**
+An API gateway is core feature of an API management solution acting as a proxy that routes requests to appropriate backend services. It provides capabilities such as request routing, API composition, rate limiting, security (authentication and authorization), and protocol translation. Implementation of an API Gateway often involves configuring it as a reverse-proxy server at the edge of your network, where it accepts all API calls, aggregates the various services required to fulfill them, and returns the appropriate result.
+
+**Compare cloud-based gateways with the self-hosted ones, when choose either of them?**
+Cloud-based API gateways like AWS API Gateway, Google Cloud Endpoints, and Azure API Gateway are managed services that provide ease of deployment, scalability, high availability, and comprehensive security options. On the other hand, self-hosted gateways like Kong, Tyk, or Nginx, provide greater control and customization but require manual setup, maintenance and infrastructure management. You should go for a cloud-based API gateway when scalability, ease of management, and reduced operational complexity are important. A self-hosted gateway would be relevant when there’s a need for greater control, customizability, or when managing proprietary logic and functionalities that are not typically covered by cloud-based solutions.
+
+**What is Backend for Frontend (BFF) pattern? What are the pros and cons of it?**
+Backend for Frontend (BFF) is a microservices pattern where the API Gateway is split up into multiple backend services, each specifically designed for a separate front-end client. Pros of BFF are simplified client code, optimized network calls, and the ability to have different data shapes for different clients. Cons include the need to maintain multiple API Gateways and potential for code duplication.
+
+**How can you degrade or improve API Gateway performance?**
+API Gateway performance can degrade through high latency, service overload due to high traffic, inefficient routing, poorly implemented API methods, and lack of caching. To improve performance, you could optimize routing, utilize caching, enable throttling to avoid system overload, optimize the data payload, employ efficient coding practices for API methods, and scale the gateway according to demand. You may also consider employing a Content Delivery Network (CDN) for improved responsiveness.
